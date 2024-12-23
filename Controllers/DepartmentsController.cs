@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WalkthroughApp.Data;
 using WalkthroughApp.Models;
 
 namespace WalkthroughApp.Controllers
 {
+    [Authorize]
     public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
