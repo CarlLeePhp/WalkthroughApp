@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WalkthroughApp.Data;
 
@@ -11,9 +12,11 @@ using WalkthroughApp.Data;
 namespace WalkthroughApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241224024650_addAuditor")]
+    partial class addAuditor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,13 +322,13 @@ namespace WalkthroughApp.Data.Migrations
                     b.Property<int>("ProcedureId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Shift")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Species")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("shift")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

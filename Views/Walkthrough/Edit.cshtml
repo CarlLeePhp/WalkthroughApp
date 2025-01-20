@@ -1,0 +1,116 @@
+﻿@model WalkthroughApp.Models.Walkthrough
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Walkthrough</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="CheckDate" class="control-label">Date</label>
+                <input type="date" asp-for="CheckDate" class="form-control" />
+                <span asp-validation-for="CheckDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Species" class="control-label"></label>
+                <select asp-for="Species" class="form-control">
+                    <option value="Ovine">Ovine</option>
+                    <option value="Bobby">Bobby</option>
+                    <option value="Cervine">Cervine</option>
+                </select>
+                <span asp-validation-for="Species" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label">Department</label>
+                <select asp-for="DepartmentId" class="form-control">
+                    @foreach (var department in ViewBag.Departments)
+                    {
+                        <option value="@department.Id">@department.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shift" class="control-label"></label>
+                <select asp-for="Shift" class="form-control">
+                    <option value="D/S">D/S</option>
+                    <option value="N/S">N/S</option>
+                </select>
+                <span asp-validation-for="Shift" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckTime" class="control-label">Time</label>
+                <input type="time" asp-for="CheckTime" class="form-control" />
+                <span asp-validation-for="CheckTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuditorId" class="control-label">Auditor</label>
+                <select asp-for="AuditorId" class="form-control">
+                    @foreach (var auditor in ViewBag.Auditors)
+                    {
+                        <option value="@auditor.Id">@auditor.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="AuditorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProcedureId" class="control-label">Process/Areas Verified</label>
+                <select asp-for="ProcedureId" class="form-control">
+                    @foreach (var procedure in ViewBag.Procedures)
+                    {
+                        <option value="@procedure.Id">@procedure.Description</option>
+                    }
+                </select>
+                <span asp-validation-for="ProcedureId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compliant" class="control-label">Compliant yes/no</label>
+                <select asp-for="Compliant" class="form-control">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <span asp-validation-for="Compliant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="Closed">Closed</option>
+                    <option value="Open">Open</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <textarea asp-for="Comments" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorrectiveAction" class="control-label">Corrective Actions</label>
+                <textarea asp-for="CorrectiveAction" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="CorrectiveAction" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
